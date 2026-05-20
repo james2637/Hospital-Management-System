@@ -36,7 +36,7 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private BloodGroupType bloodGroup;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)  //orphanRemoval this will remove the insuance from insurance table also
     private Insurance insurance;    // FK for insurance
 
     @CreationTimestamp

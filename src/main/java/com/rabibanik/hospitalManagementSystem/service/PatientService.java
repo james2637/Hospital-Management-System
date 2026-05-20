@@ -3,6 +3,7 @@ package com.rabibanik.hospitalManagementSystem.service;
 import com.rabibanik.hospitalManagementSystem.entity.Patient;
 import com.rabibanik.hospitalManagementSystem.repository.PatientRepo;
 import com.rabibanik.hospitalManagementSystem.type.BloodGroupType;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,13 @@ public class PatientService {
 
     public List<Patient> findPatientWithBloodGroup(BloodGroupType bloodGroupType){
         return patientRepo.findAllPatientWithBloodGroup(bloodGroupType);
+    }
+
+    @Transactional
+    public void removePatientInsurance(long id){
+
+        Patient patient = patientRepo.findById(id).orElseThrow();
+
+        patient.setInsurance(null);
     }
 }

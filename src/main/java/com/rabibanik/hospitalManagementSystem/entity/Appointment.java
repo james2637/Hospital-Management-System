@@ -27,6 +27,7 @@ public class Appointment {
     @JoinColumn(nullable = false)
     private Doctor doctor;
 
+//    @ManyToOne(cascade = CascadeType.PERSIST)   // not here specify in patient otherwise when u delete the appointment it tries to delete the patient also
     @ManyToOne
     @JoinColumn(nullable = false)
     private Patient patient;

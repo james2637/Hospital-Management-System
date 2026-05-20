@@ -22,7 +22,7 @@ public class Doctor {
     private long id;
 
     @Column(nullable = false)
-    private String Name;
+    private String name;
 
     private String email;
     private String phone;

@@ -30,4 +30,8 @@ public class PatientController {
         return patientService.findPatientWithBloodGroup(bloodGroup);
     }
 
+    @DeleteMapping("/delete-Patient-Insurance/{id}")
+    public void removePatientInsurance(@PathVariable("id") long patientId){
+        patientService.removePatientInsurance(patientId);
+    }
 }
