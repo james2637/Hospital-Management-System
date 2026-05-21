@@ -1,6 +1,6 @@
 package com.rabibanik.hospitalManagementSystem.entity;
 
-import com.rabibanik.hospitalManagementSystem.type.BloodGroupType;
+import com.rabibanik.hospitalManagementSystem.entity.type.BloodGroupType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,6 @@ public class Patient {
     @NonNull
     private String name;
 
-    private String email;
     private String phone;
     private String gender;
     private LocalDate dateOfBirth;
@@ -39,6 +38,10 @@ public class Patient {
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)  //orphanRemoval this will remove the insuance from insurance table also
     private Insurance insurance;    // FK for insurance
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
@@ -48,7 +51,6 @@ public class Patient {
         return "Patient{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", gender='" + gender + '\'' +
                 ", dateOfBirth=" + dateOfBirth +

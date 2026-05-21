@@ -2,7 +2,7 @@ package com.rabibanik.hospitalManagementSystem.service;
 
 import com.rabibanik.hospitalManagementSystem.entity.Patient;
 import com.rabibanik.hospitalManagementSystem.repository.PatientRepo;
-import com.rabibanik.hospitalManagementSystem.type.BloodGroupType;
+import com.rabibanik.hospitalManagementSystem.entity.type.BloodGroupType;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class PatientService {
     }
 
     public Patient findPatientByEmail(String email){
-        return patientRepo.findByEmail(email);
+        return patientRepo.findByUserEmail(email);
     }
 
     public List<Patient> findPatientWithBloodGroup(BloodGroupType bloodGroupType){

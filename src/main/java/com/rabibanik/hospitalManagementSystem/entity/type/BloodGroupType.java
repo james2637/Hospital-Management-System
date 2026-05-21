@@ -1,4 +1,4 @@
-package com.rabibanik.hospitalManagementSystem.type;
+package com.rabibanik.hospitalManagementSystem.entity.type;
 
 public enum BloodGroupType {
     A_POSITIVE,

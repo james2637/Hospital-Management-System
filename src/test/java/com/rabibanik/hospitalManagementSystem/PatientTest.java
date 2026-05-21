@@ -2,14 +2,11 @@ package com.rabibanik.hospitalManagementSystem;
 
 import com.rabibanik.hospitalManagementSystem.entity.Patient;
 import com.rabibanik.hospitalManagementSystem.repository.PatientRepo;
-import com.rabibanik.hospitalManagementSystem.type.BloodGroupType;
-import org.hibernate.query.Page;
+import com.rabibanik.hospitalManagementSystem.entity.type.BloodGroupType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.data.autoconfigure.web.DataWebProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @SpringBootTest

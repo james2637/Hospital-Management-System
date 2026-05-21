@@ -1,8 +1,10 @@
 package com.rabibanik.hospitalManagementSystem.controller;
 
+import com.rabibanik.hospitalManagementSystem.entity.Insurance;
 import com.rabibanik.hospitalManagementSystem.entity.Patient;
+import com.rabibanik.hospitalManagementSystem.service.InsuranceService;
 import com.rabibanik.hospitalManagementSystem.service.PatientService;
-import com.rabibanik.hospitalManagementSystem.type.BloodGroupType;
+import com.rabibanik.hospitalManagementSystem.entity.type.BloodGroupType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,23 +16,22 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private InsuranceService insuranceService;
 
-    @GetMapping("/info")
-    public Patient getPatientInfo(@RequestParam String name){
-        return patientService.findPatientByName(name);
-    }
 
-    @GetMapping("/info-email")
-    public Patient getPatientInfoByEmail(@RequestParam String email) {
-        return patientService.findPatientByEmail(email);
-    }
-
-    @GetMapping("/patientWithBloodGroup")
-    public List<Patient> getPatientWithBloodGroup(BloodGroupType bloodGroup){
+    @GetMapping("/patientWithBloodGroup/{type}")
+    public List<Patient> getPatientWithBloodGroup(@PathVariable("type") BloodGroupType bloodGroup){
         return patientService.findPatientWithBloodGroup(bloodGroup);
     }
 
-    @DeleteMapping("/delete-Patient-Insurance/{id}")
+    @PostMapping("/insurance/add/{id}")
+    public void addInsuranceToPatient(@PathVariable("id") long patientId,@RequestBody Insurance insurance){
+        insuranceService.addPatientInsurance(patientId, insurance);
+    }
+
+
+    @DeleteMapping("/insurance/delete/{id}")
     public void removePatientInsurance(@PathVariable("id") long patientId){
         patientService.removePatientInsurance(patientId);
     }

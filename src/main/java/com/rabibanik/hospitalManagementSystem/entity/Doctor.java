@@ -23,11 +23,12 @@ public class Doctor {
 
     @Column(nullable = false)
     private String name;
-
-    private String email;
     private String phone;
 
     @Column(length = 100)
     private String specialization;
 
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
+    private User user;
 }

@@ -13,6 +13,10 @@ A comprehensive backend solution built with **Spring Boot** and **PostgreSQL** d
 *   **Data Persistence:** Robust relational data storage using PostgreSQL.
 
 ---
+##  📁 ER Diagram
+![ER Diagram](ER_Diagram.png)
+
+---
 
 ## 🛠️ Tech Stack
 
