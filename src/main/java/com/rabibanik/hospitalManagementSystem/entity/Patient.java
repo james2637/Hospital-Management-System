@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
         uniqueConstraints = {
-                @UniqueConstraint(name = "unique_constraint_email", columnNames = {"email"}),
                 @UniqueConstraint(name = "unique_constraint_phone", columnNames = {"phone"})
         }
 )
@@ -22,7 +21,7 @@ import java.time.LocalDateTime;
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NonNull

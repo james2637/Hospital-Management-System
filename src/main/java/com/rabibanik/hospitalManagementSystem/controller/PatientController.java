@@ -20,11 +20,6 @@ public class PatientController {
     private InsuranceService insuranceService;
 
 
-    @GetMapping("/patientWithBloodGroup/{type}")
-    public List<Patient> getPatientWithBloodGroup(@PathVariable("type") BloodGroupType bloodGroup){
-        return patientService.findPatientWithBloodGroup(bloodGroup);
-    }
-
     @PostMapping("/insurance/add/{id}")
     public void addInsuranceToPatient(@PathVariable("id") long patientId,@RequestBody Insurance insurance){
         insuranceService.addPatientInsurance(patientId, insurance);

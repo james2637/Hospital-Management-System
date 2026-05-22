@@ -1,16 +1,19 @@
 package com.rabibanik.hospitalManagementSystem.entity;
 
+import com.rabibanik.hospitalManagementSystem.entity.type.RoleType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Indexed;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -29,10 +32,13 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;      //this will do the job for getPassword method
 
-    private Set<String> roles;
+    @Enumerated(EnumType.STRING)
+    private Set<RoleType> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
+                .collect(Collectors.toList());
     }
 }

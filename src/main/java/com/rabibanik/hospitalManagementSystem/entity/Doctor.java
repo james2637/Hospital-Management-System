@@ -9,12 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(
-        uniqueConstraints = {
-                @UniqueConstraint(name = "unique_constraint_email", columnNames = {"email"}),
-                @UniqueConstraint(name = "unique_constraint_phone", columnNames = {"phone"})
-        }
-)
 public class Doctor {
 
     @Id
@@ -23,6 +17,7 @@ public class Doctor {
 
     @Column(nullable = false)
     private String name;
+    @Column(nullable = false, unique = true)
     private String phone;
 
     @Column(length = 100)

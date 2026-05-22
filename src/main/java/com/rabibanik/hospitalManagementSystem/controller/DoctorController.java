@@ -12,11 +12,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/doctor")
 public class DoctorController {
 
-    @Autowired
-    private DoctorService doctorService;
 
-    @PostMapping("/add")
-    public void addDoctor(@RequestBody Doctor doctor){
-        doctorService.createdoctor(doctor);
-    }
 }
