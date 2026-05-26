@@ -47,6 +47,11 @@ public class DoctorService {
 
     @Transactional
     public String createDoctor(DoctorRegistrationDto doctorRegistrationDto) {
+
+        if (userRepo.findByUsername(doctorRegistrationDto.getUsername()) != null){
+            throw new IllegalArgumentException("Doctor with this username already exits");
+        }
+
         User user = new User();
         user.setUsername(doctorRegistrationDto.getUsername());
         user.setPassword(passwordEncoder.encode(doctorRegistrationDto.getPassword()));
