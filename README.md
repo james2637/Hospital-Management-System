@@ -41,8 +41,9 @@ A comprehensive backend solution built with **Spring Boot** and **PostgreSQL** d
 git clone https://github.com/james2637/Hospital-Management-System.git
 cd Hospital-Management-System
 ```
+
 ### Step 2: Database Configuration
-Create a database in PostgreSQL 
+Create a database in PostgreSQL
 
 Open src/main/resources/application.properties and update the credentials:
 ```bash
@@ -51,4 +52,10 @@ spring.datasource.username=your_postgres_username
 spring.datasource.password=your_postgres_password
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+```
+### Step 3: Create a .env file and add this credentials
+```bash
+Google_Client_ID=
+Google_Client_Secret=
+JwtSecretKey=
 ```
