@@ -1,5 +1,6 @@
 package com.rabibanik.hospitalManagementSystem.entity;
 
+import com.rabibanik.hospitalManagementSystem.entity.type.AuthProviderType;
 import com.rabibanik.hospitalManagementSystem.entity.type.RoleType;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -34,6 +35,11 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Set<RoleType> roles;
+
+//    private String providerId;  // if you want to store the provider id also
+
+    @Enumerated(EnumType.STRING)
+    private AuthProviderType providerType;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
