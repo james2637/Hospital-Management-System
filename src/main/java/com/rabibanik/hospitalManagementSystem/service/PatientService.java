@@ -1,5 +1,6 @@
 package com.rabibanik.hospitalManagementSystem.service;
 
+import com.rabibanik.hospitalManagementSystem.dto.PatientResponseDto;
 import com.rabibanik.hospitalManagementSystem.entity.Patient;
 import com.rabibanik.hospitalManagementSystem.repository.PatientRepo;
 import com.rabibanik.hospitalManagementSystem.entity.type.BloodGroupType;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientService {
@@ -25,6 +27,26 @@ public class PatientService {
 
     public List<Patient> findPatientWithBloodGroup(BloodGroupType bloodGroupType){
         return patientRepo.findAllPatientWithBloodGroup(bloodGroupType);
+    }
+
+    public List<PatientResponseDto> findAllPatient() {
+
+        List<Patient> patients = patientRepo.findByOrderByCreatedAtDesc();
+
+        return patients.stream()
+                .map(patient -> {
+                    PatientResponseDto patientResponseDto = new PatientResponseDto();
+                    patientResponseDto.setName(patient.getName());
+                    patientResponseDto.setEmail(patient.getUser().getEmail());
+                    patientResponseDto.setGender(patient.getGender());
+                    patientResponseDto.setPhone(patient.getPhone());
+                    patientResponseDto.setBloodGroup(patient.getBloodGroup());
+                    patientResponseDto.setSignInWith(patient.getUser().getProviderType());
+                    patientResponseDto.setCreatedAt(patient.getCreatedAt());
+
+                    return patientResponseDto;
+                })
+                .toList();
     }
 
     @Transactional

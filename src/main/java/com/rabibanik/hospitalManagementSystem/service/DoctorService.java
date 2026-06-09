@@ -38,6 +38,7 @@ public class DoctorService {
                     doctorResponseDto.setName(doctor.getName());
                     doctorResponseDto.setSpecialization(doctor.getSpecialization());
                     doctorResponseDto.setEmail(doctor.getUser().getEmail());
+                    doctorResponseDto.setPhone(doctor.getPhone());
 
                     return doctorResponseDto;
                 })
@@ -67,5 +68,11 @@ public class DoctorService {
         doctorRepo.save(doctor);
 
         return "Doctor Created Successfully";
+    }
+
+    public void removeDoctor(long doctorId) {
+        Doctor doctor= doctorRepo.findById(doctorId).orElseThrow(() -> new IllegalArgumentException("Doctor not found with id: " + doctorId));
+        doctorRepo.deleteById(doctor.getId());
+        userRepo.delete(doctor.getUser());
     }
 }

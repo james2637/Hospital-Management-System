@@ -21,4 +21,6 @@ public interface PatientRepo extends JpaRepository<Patient, Long> {
     @Query(value = "Select * from patient", nativeQuery = true) // to create our own query method using native SQL query
     List<Patient> findAllPatient();
 
+    List<Patient> findByOrderByCreatedAtDesc();  //this will sort the result by createdAt
+
 }

@@ -111,6 +111,12 @@ public class AuthService {
             user.setRoles(Set.of(RoleType.PATIENT));
             user.setProviderType(providerType);
             User savedOauthUser = userRepo.save(user);     // after user continue with google is successful we can show him a screen to add the patient info
+            //for now we will just create the patient with name and add the details we have after that we will show a pop up to the user to add other details like DOB, bloodGroup
+            Patient patient = new Patient();
+            patient.setName(oAuth2User.getAttribute("name"));
+            patient.setUser(savedOauthUser);
+            patientRepo.save(patient);
+
         }else if(user != null){
             if(user.getProviderType() != providerType){
                 throw new BadCredentialsException("user already exits with different provider \n please login with "+ user.getProviderType());

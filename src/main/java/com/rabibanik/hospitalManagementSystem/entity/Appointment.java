@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +20,8 @@ public class Appointment {
 
     @Column(nullable = false)
     private LocalDateTime appointmentTime;
+
+    private LocalDate appointmentDate;
 
     @Column(length = 500)
     private String reason;
